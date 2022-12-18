@@ -8,6 +8,10 @@ This project was created with [This OpenClassRooms course](https://openclassroom
 
 To install this project and its dependencies, run `npm install`.
 
+### back-end
+
+You must clone [this git repository](https://github.com/OpenClassrooms-Student-Center/angular-advanced-backend) and run `npm install` and `npm run start` on directroy where is this back-end.
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.

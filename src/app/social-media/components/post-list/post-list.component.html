@@ -1,4 +1,5 @@
 <h2>Posts</h2>
 <ng-container *ngFor="let post of posts$ | async">
-  <app-post-list-item [post]="post"></app-post-list-item>
-</ng-container>
+  <app-post-list-item [post]="post" (postCommented)="onPostCommented($event)">
+  </app-post-list-item>
+  </ng-container>

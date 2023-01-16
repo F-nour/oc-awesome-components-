@@ -1,10 +1,10 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { HeaderComponent } from './components/header/header.component';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {HeaderComponent} from './components/header/header.component';
 import {SharedModule} from "../shared/shared.module";
-import {Router, RouterModule} from "@angular/router";
+import {RouterModule} from "@angular/router";
 import {HttpClientModule} from "@angular/common/http";
-
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 
 @NgModule({
@@ -14,11 +14,13 @@ import {HttpClientModule} from "@angular/common/http";
   imports: [
     CommonModule,
     RouterModule,
+    BrowserAnimationsModule,
     SharedModule,
     HttpClientModule
   ],
   exports: [
-      HeaderComponent
+    HeaderComponent
   ]
 })
-export class CoreModule { }
+export class CoreModule {
+}

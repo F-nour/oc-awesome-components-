@@ -6,7 +6,7 @@
     </button>
   </mat-form-field>
 </div>
-<mat-list *ngIf="comments">
+<mat-list *ngIf="comments" @list>
   <h2 matSubheader>Commentaires</h2>
   <mat-list-item *ngFor="let comment of comments; let i = index" [@listItem]="animationStates[i]"
           (mouseenter)="onListItemActive(i)"
@@ -14,7 +14,7 @@
           (focus)="onListItemActive(i)"
           (blur)="onListItemDefault(i)"
   tabindex="0">
-    <span mat-line>{{ comment.comment }}</span>
-    <span mat-line>{{ comment.createdDate | timeAgo }}</span>
+    <span class="comment-text" mat-line>{{ comment.comment }}</span>
+    <span class="comment-date"mat-line>{{ comment.createdDate | timeAgo }}</span>
   </mat-list-item>
 </mat-list>

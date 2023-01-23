@@ -1,5 +1,14 @@
+mat-toolbar {
+  display: flex;
+  justify-content: start;
+  gap: 2em;
+}
+
 ul {
   list-style: none;
+  flex: 1;
+  display: flex;
+  justify-content: space-around;
 }
 
 li {

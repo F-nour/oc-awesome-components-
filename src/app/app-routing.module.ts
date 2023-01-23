@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   { path: 'social-media', loadChildren: () => import('./social-media/social-media.module').then(m => m.SocialMediaModule) },
+  { path: 'form', loadChildren: () => import('./form/form.module').then(m => m.FormModule) },
   { path: '**', redirectTo: 'social-media'}
 ];
 

@@ -28,7 +28,8 @@ import {slideAndFadeAnimation} from "../../animations/slide.animation";
           stagger(50, [
             animateChild()
           ])
-        ])
+        ],
+          {optional: true})
       ])
     ]),
     trigger('listItem', [
@@ -68,12 +69,14 @@ import {slideAndFadeAnimation} from "../../animations/slide.animation";
                 animate('250ms', style({
                   opacity: 1
                 }))
-              ]),
+              ],
+                {optional: true}),
               query('.comment-date', [
                 animate('500ms', style({
                   opacity: 1,
                 }))
-              ])
+              ],
+                {optional: true})
             ])
           ])
         ])

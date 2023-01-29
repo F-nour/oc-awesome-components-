@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
-import {Candidate} from "../components/models/candidate.model";
-import {BehaviorSubject, delay, map, Observable, tap} from "rxjs";
+import {Candidate} from "../models/candidate.model";
+import {BehaviorSubject, delay, map, Observable, switchMap, take, tap} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../environments/environment";
 
@@ -50,7 +50,40 @@ export class CandidatesService {
     );
   }
 
+  refuseCandidate(id: number): void {
+    this.setLoadingStatus(true);
+    this.http.delete(`${environment.apiUrl}/candidates/${id}`).pipe(
+      delay(1000),
+      switchMap(() => this.candidates$),
+      take(1),
+      map(candidates => candidates.filter(candidate => candidate.id !== id)),
+      tap(candidates => {
+        this._candidates$.next(candidates);
+        this.setLoadingStatus(false);
+      })
+    ).subscribe();
+  }
+
+  hireCandidate(id: number): void {
+    this.candidates$.pipe(
+      take(1),
+      map(candidates => candidates
+        .map(candidate => candidate.id === id ?
+          {...candidate, company: 'Snapface Ltd'} :
+          candidate
+        )
+      ),
+      tap(updatedCandidates => this._candidates$.next(updatedCandidates)),
+      switchMap(updatedCandidates =>
+        this.http.patch(`${environment.apiUrl}/candidates/${id}`,
+          updatedCandidates.find(candidate => candidate.id === id))
+      )
+    ).subscribe();
+  }
+
   private setLoadingStatus(loading: boolean) {
     this._loading$.next(loading);
   }
+
+
 }
